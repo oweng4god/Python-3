@@ -1,0 +1,11 @@
+#Input temperature from user
+temp = float(input("Enter the temperature is C:"))
+#Conditional statements
+if temp >= 30:
+    print("It is Summer time! Enjoy the sunshine!")
+elif 20 <= temp <30:
+    print("The weather is pleasent.")
+elif 10 <= temp  <  20:
+    print("It's a bit chilly. ")
+else:
+    print("Brrr! It's cold winter!")
