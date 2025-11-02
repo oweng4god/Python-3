@@ -1,0 +1,50 @@
+import random
+import string
+
+def generate_mixed_password(length):
+    """
+    Generates a random password consisting of lowercase, uppercase 
+    letters, and numbers, and shuffles the result.
+    """
+    # Define the possible characters
+    lowercase_chars = string.ascii_lowercase
+    uppercase_chars = string.ascii_uppercase
+    digit_chars = string.digits
+    
+    # Combine all characters into a single pool
+    all_characters = lowercase_chars + uppercase_chars + digit_chars
+    
+    # Ensure at least one character from each required type is included
+    password_list = []
+    password_list.append(random.choice(lowercase_chars))
+    password_list.append(random.choice(uppercase_chars))
+    password_list.append(random.choice(digit_chars))
+    
+    # Add remaining characters randomly from the combined pool until the desired length is reached
+    # The length is adjusted to account for the initial 3 mandatory characters
+    remaining_length = length - 3
+    for _ in range(remaining_length):
+        password_list.append(random.choice(all_characters))
+        
+    # Shuffle the list of characters to ensure random order
+    random.shuffle(password_list)
+    
+    # Join the list into a single string
+    password = "".join(password_list)
+    
+    return password
+
+# --- Example Usage ---
+# Prompt the user for the desired password length
+try:
+    length = int(input("Enter the desired password length (minimum 3): "))
+    if length < 3:
+        print("Length must be at least 3 to guarantee all character types. Setting length to 3.")
+        length = 3
+except ValueError:
+    print("Invalid input. Using default length of 8.")
+    length = 8
+
+# Generate and print the password
+generated_password = generate_mixed_password(length)
+print(f"Generated Password: {generated_password}")
